@@ -1,9 +1,9 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 class BadgeForm extends React.Component {
+  state = {};
 
-  state = {}
-  
   handlerChange = e => {
     this.setState({
       firsName: e.target.value
@@ -15,7 +15,7 @@ class BadgeForm extends React.Component {
     console.log("Si!");
   };
 
-  render = ( ) => {
+  render = () => {
     return (
       <div>
         <h1>New Attendant</h1>
@@ -27,10 +27,11 @@ class BadgeForm extends React.Component {
             type="text"
           />
           <button onClick={this.handlerClick}>Clic Here!</button>
+          <Link to="badges-nav" >Ir Allá</Link>
         </form>
       </div>
     );
-  }
+  };
 }
 
 export default BadgeForm;

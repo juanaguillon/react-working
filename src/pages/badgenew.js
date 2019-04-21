@@ -1,5 +1,4 @@
 import React from "react";
-import NavBar from "../components/navbar";
 import Badge from "../components/badge";
 import BadgeForm from "../components/badgeform";
 
@@ -22,7 +21,6 @@ class badgeNew extends React.Component {
   render() {
     return (
       <div>
-        <NavBar />
         <Badge
           name="Juan"
           lastname={this.state.form.firstname}
