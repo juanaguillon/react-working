@@ -1,10 +1,9 @@
-import React from 'react'
-import confLogo from '../images/anillo3.jpg'
+import React from "react";
+import confLogo from "../images/anillo3.jpg";
 
-import './styles/badge.css'
+import "./styles/badge.css";
 
-class Badge extends React.Component{
-
+class Badge extends React.Component {
   render() {
     return (
       <div className="badge">
@@ -13,12 +12,12 @@ class Badge extends React.Component{
         </div>
         <div>
           <h1>
-            Juan <br />
-            Aguillon
+            {this.props.name} <br />
+            {this.props.lastname}
           </h1>
         </div>
         <div>
-          <p>Frontend Enginer</p>
+          <p>{this.props.jobtitle}</p>
           <p>@juanag</p>
         </div>
         <div>
@@ -27,7 +26,6 @@ class Badge extends React.Component{
       </div>
     );
   }
-  
 }
 
 export default Badge;

@@ -1,8 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Badge from './components/badge'
-
+import BadgeNew from "./pages/badgenew";
 
 const container = document.getElementById("root");
 
-ReactDOM.render(<Badge/>, container);
+ReactDOM.render(
+  <BadgeNew />,
+  container
+);
