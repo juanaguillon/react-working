@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import BadgeNew from "./pages/badgenew";
+
+
+import App from "./components/App";
+
 
 const container = document.getElementById("root");
 
-ReactDOM.render(
-  <BadgeNew />,
-  container
-);
+ReactDOM.render(<App />, container);
