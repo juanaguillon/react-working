@@ -1,7 +1,26 @@
-.bold{
-  font-weight: bold;
+.logo_title {
+  color: var(--cprimary);
+  font-size: 2.2rem;
 }
 
-.light{
+.principal_nav {
+  display: flex;
+  background: white;
+  padding: 2rem 1rem;
+  border-bottom: 2px solid var(--cprimary);
+  box-shadow: 0 0 7px dimgrey;
+}
+
+.left_side .logo {
+  height: 140px;
+}
+.list_right_side {
+  align-items: center;
+  justify-content: center;
+}
+.list_right_side li {
+  padding: 10px;
+  font-size: 1.4rem;
+  color: blrgb(36, 36, 36);
   font-weight: lighter;
 }

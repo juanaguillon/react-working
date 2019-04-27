@@ -1,11 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import 'bootstrap/dist/css/bootstrap.min.css'
-
+import ReactDOM  from 'react-dom';
+import './style.css';
 
 import App from "./components/App";
 
-
 const container = document.getElementById("root");
 
-ReactDOM.render(<App />, container);
+ReactDOM.render(<App/>, container);

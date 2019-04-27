@@ -1,17 +1,32 @@
 import React from "react";
-import './styles/navbar.css';
+import { Link } from 'react-router-dom'
+import "./styles/NavBar.css";
 
 class NavBar extends React.Component {
   render() {
     return (
-      <div>
-        <a href="/">
-          <img src="https://www.freelogodesign.org/Content/img/logo-ex-7.png" alt="logo" />
-          <span className="light">Platzi</span>
-          <span className="bold">Conf</span>
-        </a>
-
-      </div>
+      <nav className="principal_nav">
+        <div className="container-fluid">
+          <div className="flex-horizontal">
+            <div className="left_side w50">
+              <h1 className="logo_title">Company</h1>
+            </div>
+            <div className="right_side w50">
+              <ul className="list_right_side flex-horizontal">
+                <li>
+                  <Link to="/">Ingresar</Link>
+                </li>
+                <li>
+                  <Link to="/register">Registrar</Link>
+                </li>
+                <li>
+                  <Link to="/sesión">Sesión</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
     );
   }
 }
