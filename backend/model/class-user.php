@@ -2,6 +2,7 @@
 
 require 'class-query.php';
 
+
 class User extends Query
 {
 
@@ -20,32 +21,39 @@ class User extends Query
 	/** Columnas que se usarán en la base de datos.  */
 	private $fields = array();
 
+	/** Tabla SQL que se usará para guardar/usar los registros de los usuarios. */
+	private $table = "";
+
+
 	/**
 	 * Construction clase.
 	 * @param array $fields Columnas que se usarán a la base de datos.
 	 * 
 	 */
-	public function __construct($fields)
+	public function __construct($fields, $table)
 	{
+
 		parent::__construct($fields);
+		$this->table = $table;
 		$this->fields = $fields;
+
 	}
 
-	public function setUser($auth, $password, $data)
-	{
-		$this->auth = $auth;
-	}
 
 
 	/** Crear un nuevo usuario
-	 * @param string $auth Email o nombre de usuario único para ser registrado
-	 * @param string $password Contraseña de acceso a el nuevo usuario
-	 * @param array $data Otros datos que se ingresaran a el nuevo usuario
+	 * @param array $data Otros datos que se ingresaran a el nuevo usuario. Este parámetro debe tener obligatoriamente un valor "auth" y "password" siendo los valores para crear el logueo, de otra manera, enviará error y no permite registrar el nuevo usuario.
 	 */
-	public function createUser($auth, $password, $data)
+	public function create_user($auth, $password, $data)
 	{
-		$data["auth"] = $auth;
-		$data["password"] = $password;
-		$this->insert('users', $data );
+
+		$this->data = $data;
+		$this->auth = $auth;
+		$this->password = $password;
+		$this->insert($this->table, $data);
+	}
+
+	public function get_prop(){
+
 	}
 }

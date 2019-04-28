@@ -20,17 +20,26 @@ function cors()
 		exit(0);
 	}
 }
-
 cors();
 
 
 $postdata = file_get_contents("php://input");
-$request = json_decode($postdata);
+$input = json_decode($postdata);
+$request = $input->request;
 
-if ( isset($request->request) ){
-	echo json_encode( array( "resp" => "Yes", "data" => $request) );
-
-}else{
-	echo json_encode( array("resp" => "Not"));
+switch ($request) {
+	case 'create_user':
+		try {
+			require 'model/class-user.php';
+			require 'controller/user.php';
+			create_user($input);
+			echo json_encode(array('f'=>"ff"));
+		} catch (Exception $e) {
+			echo json_encode(array('error' => $e->getMessage()));
+		}
+		break;
+	
 }
+
+
 

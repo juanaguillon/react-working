@@ -1,6 +1,6 @@
 <?php
 
-require './class-connect.php';
+require 'model/class-connect.php';
 
 class Query extends Connect
 {
@@ -77,14 +77,26 @@ class Query extends Connect
       }
 
       if ($first) {
-        $sql .= "{$d}={$v}";
+        if ( !is_string($v) ){
+          $sql .= "{$d}={$v}";
+        }else{
+          $sql .= "{$d}='{$v}'";
+
+        }
+        $first = false;
         continue;
       }
 
-      $sql .= ",{$d}={$v}";
+      if (!is_string($v)) {
+        $sql .= ",{$d}={$v}";
+      } else {
+        $sql .= ",{$d}='{$v}'";
+      }
+
+      
     }
     if ($valueNotExists) {
-      trigger_error('Los valores ingresados a el constructor, no coinciden con los valores ingresados en el constructor');
+      trigger_error('Los valores ingresados, no coinciden con los valores ingresados en el constructor');
     }
 
     $prp = $this->connect->prepare($sql );

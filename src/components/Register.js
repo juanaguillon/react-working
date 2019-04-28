@@ -27,8 +27,12 @@ class Register extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let http = new HttpClass();
+    let currentState = this.state;
+    currentState.request = "create_user";
+    this.setState(currentState);
+    
     http.post("http://localhost:8080/reactapp/backend/", this.state);
-    // console.log(this.state);
+
   }
 
   render() {
