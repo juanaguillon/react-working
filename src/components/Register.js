@@ -27,7 +27,7 @@ class Register extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let http = new HttpClass();
-    http.post("http://localhost:8080/prueba-php/", this.state);
+    http.post("http://localhost:8080/reactapp/backend/", this.state);
     // console.log(this.state);
   }
 
