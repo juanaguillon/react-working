@@ -1,5 +1,10 @@
 class HttpClass{
 
+  url = {};
+
+  headers = {};
+
+  dataFetch = {}
   
   /**
    * Enviar una solicitud post a la url establecida.
@@ -9,27 +14,50 @@ class HttpClass{
    */
   post(url, data, headers = false){
 
+
+    this.url = url;
+
     if ( ! headers ){
-      headers = {
+      this.headers = {
         "Content-Type": "application/json; charset=utf-8"
       };
+    }else{
+      this.headers = headers;
     }
 
-    let dataSend = new FormData();
-    for ( let i in data ){
-      dataSend.append(i, data[i]);
-    }
-
-    let dataFetch = {
+    this.dataFetch = {
       method: "post",
       headers: headers,
       body: JSON.stringify(data),
-    };
-    fetch(url, dataFetch)
-    .then( result => result.json() )
-    .then( result => console.log( result ));
+    };   
     
+    return this._createFetch();
     
+  }
+
+  /**
+   * Agregar una url para enviar una petición.
+   * @param {string} url Url a la cual se enviará la peticion.
+   */
+  setUrl( url ){
+    this.url = url;
+  }
+
+  /**
+   * Datos de Body que se enviarán por peticion FETCH.
+   * @param {any} data Datos clave:valor, para enviar a una url en especifica.
+   */
+  setData( data ){
+
+  }
+
+  async _createFetch( ){
+    
+    return await fetch(this.url, this.dataFetch)
+    .then(reponse => reponse.json() )
+    .then( json => {
+      return json;
+    })
   }
   
 }
