@@ -4,19 +4,24 @@ import HttpClass from "../services/Http";
 class Login extends React.Component {
 
   handleChangeInput( e ){
-    e.preventDefalt();
-    let http =  new HttpClass;
-    http.
+    console.log( "F" );
   }
   
   handleSubmit( e ){
+    e.preventDefault();
+    let http = new HttpClass("http://localhost");
+    http.setData({
+      method:'get'
+    })
+    let json = http.get("user/list");
 
+    console.log(json);
   }
 
   render(){
     return (
       <div className="box">
-        <form id="login_form">
+        <form id="login_form" onSubmit={this.handleSubmit}>
           <div className="field">
             <label htmlFor="user_field">Usuario o Email</label>
             <input
