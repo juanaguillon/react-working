@@ -32,7 +32,7 @@ class HttpClass {
 
   async get( url, headers = false ){
     let dataFetch = {
-      method: "get"
+      method: "get" 
     };
     this.setData(dataFetch);
     this.setUrl(url);
