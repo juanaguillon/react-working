@@ -3,19 +3,35 @@ import HttpClass from "../services/Http";
 
 class Login extends React.Component {
 
+  constructor( props ){
+    super(props);
+
+    this.state = {
+      email: "",
+      password: ""
+    }
+
+    this.handleChangeInput = this.handleChangeInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    
+  }
+
   handleChangeInput( e ){
-    console.log( "F" );
+
+    let name = e.target.name;
+    let value = e.target.value;
+    this.setState({
+      [name]: value
+    })
+    
   }
   
   handleSubmit( e ){
     e.preventDefault();
     let http = new HttpClass("http://localhost");
-    http.setData({
-      method:'get'
-    })
-    let json = http.get("user/list");
-
-    console.log(json);
+    
+    let json = http.post("user/auth", this.state );
+    json.then( f => console.log( f ))
   }
 
   render(){
@@ -26,7 +42,7 @@ class Login extends React.Component {
             <label htmlFor="user_field">Usuario o Email</label>
             <input
               onChange={this.handleChangeInput}
-              name="user_field"
+              name="email"
               id="user_field"
               type="text"
               className="input itext"
@@ -36,9 +52,9 @@ class Login extends React.Component {
             <label htmlFor="pass_field">Contraseña</label>
             <input
               onChange={this.handleChangeInput}
-              name="pass_field"
+              name="password"
               id="pass_field"
-              type="text"
+              type="password"
               className="input itext"
             />
           </div>

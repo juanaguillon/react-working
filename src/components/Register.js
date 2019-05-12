@@ -2,6 +2,7 @@ import React from "react";
 import HttpClass from '../services/Http';
 
 class Register extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {

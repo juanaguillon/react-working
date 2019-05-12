@@ -76,9 +76,8 @@ class HttpClass {
     let fullUrl = this.mainUrl + '/' + this.url;
     return await fetch(fullUrl, this.dataFetch)
       .then(reponse => reponse.json())
-      .then(json => {
-        return console.log( json);
-      });
+      .then(json => json);
+      
   }
 }
 
