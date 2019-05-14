@@ -6,11 +6,10 @@ class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      register_email: "",
-      register_name: "",
-      register_lastname: "",
-      register_pass: "",
-      register_rpass: ""
+      email: "",
+      name: "",
+      pass: "",
+      rpass: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,11 +27,13 @@ class Register extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     let http = new HttpClass("http://localhost");
-    let currentState = this.state;
-    currentState.request = "create_user";
-    this.setState(currentState);
+    http.post("user/create", this.state ).then( f => console.log( f ))
+    // let http = new HttpClass("http://localhost");
+    // let currentState = this.state;
+    // currentState.request = "create_user";
+    // this.setState(currentState);
     
-    http.post("reactapp/backend/", this.state);
+    // http.post("reactapp/backend/", this.state);
 
   }
 
@@ -48,7 +49,7 @@ class Register extends React.Component {
                   type="text"
                   id="register_email"
                   className="input itext"
-                  name="register_email"
+                  name="email"
                   onChange={this.handleInputChange}
                 />
               </div>
@@ -58,27 +59,17 @@ class Register extends React.Component {
                   type="text"
                   id="register_name"
                   className="input itext"
-                  name="register_name"
+                  name="name"
                   onChange={this.handleInputChange}
                 />
-              </div>
-              <div className="field">
-                <label htmlFor="register_lastname">Apellido completo</label>
-                <input
-                  type="text"
-                  id="register_lastname"
-                  className="input itext"
-                  name="register_lastname"
-                  onChange={this.handleInputChange}
-                />
-              </div>
+              </div>              
               <div className="field">
                 <label htmlFor="register_pass">Contraseña</label>
                 <input
                   type="password"
                   id="register_pass"
                   className="input itext"
-                  name="register_pass"
+                  name="pass"
                   onChange={this.handleInputChange}
                 />
               </div>
@@ -88,7 +79,7 @@ class Register extends React.Component {
                   type="password"
                   id="register_rpass"
                   className="input itext"
-                  name="register_rpass"
+                  name="rpass"
                   onChange={this.handleInputChange}
                 />
               </div>

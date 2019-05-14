@@ -11,17 +11,35 @@ class UserController extends Controller{
 
   public function show(){
     return response()->json(User::all());
-    // return User::all();
   }
 
+  /* POST */
   public function create( Request $request ){
 
-    $user = User::create( $request->all());
+    if ( $request->input("rpass") !== $request->input("pass")){     
+      
+      return response()->json(array("error" => "Contraseñas no coinciden") );
 
-    return response()->json( $user, 201 );
+    }
+
+    try {
+      $sending = array(
+        "email" => $request->input("email"),
+        "name"  => $request->input("name"),
+        "pass" => Hash::make( $request->input("pass")),
+        "created_at" => \Carbon\Carbon::now()->toDateTimeString(),
+        "updated_at" => \Carbon\Carbon::now()->toDateTimeString()
+      );
+
+      $user = User::insert( $sending );
+      return response()->json( $user, 201 );
+
+    } catch (\Throwable $th) {
+      return response()->json( array("error" => $th ));
+    }
     
   }
-
+  
   public function getUser($id){
     return response()->json( User::find( $id ));
   }
@@ -45,11 +63,15 @@ class UserController extends Controller{
       return response()->json(array("error"=>"Usuario o contraseña inválida"), 400);
     }
 
-    if ( Hash::check( $request->input('password'), $user->password)){
+    if ( Hash::check( $request->input('password'), $user->pass)){
       return response()->json(array("token" => $this->jwt( $user->id ) ));
     }else{
       return response()->json(array("error"=>"Contraseñas no coinciden"));
     }
+    
+  }
+
+  public function getUserInformation( $request ){
     
   }
   

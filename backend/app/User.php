@@ -9,7 +9,6 @@ class User extends Model
 
     protected $primaryKey = "id";
 
-    public $timestamps = false;
     
     /**
      * The attributes that are mass assignable.
@@ -26,7 +25,7 @@ class User extends Model
      * @var array
      */
     protected $hidden = [
-        'password'
+        'pass'
         
     ];
 }

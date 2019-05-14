@@ -31,7 +31,13 @@ class Login extends React.Component {
     let http = new HttpClass("http://localhost");
     
     let json = http.post("user/auth", this.state );
-    json.then( f => console.log( f ))
+    json.then( f => {
+      if ( typeof f.token != "undefined" ){
+        localStorage.setItem('token_id', f.token );
+      }else{
+        console.log( f );
+      }
+    });
   }
 
   render(){
