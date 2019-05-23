@@ -13,13 +13,21 @@
 
 
 $router->get('/', function () use ($router) {
-    echo "Hello btiches";
+	echo "Hello btiches";
 });
 
-$router->group(["prefix" => "user"], function() use ($router) {
-    $router->get('list', array("uses" => "UserController@show"));
-    $router->post('create', array("uses" => "UserController@create"));
-    $router->get('{id}', array("uses" => "UserController@getUser"));
-    $router->post('auth', array("uses" => "UserController@authUser"));
-
+$router->group(["prefix" => "user"], function () use ($router) {
+	$router->get('list', array("uses" => "UserController@show"));
+	$router->post('create', array("uses" => "UserController@create"));
+	$router->post('auth', array("uses" => "UserController@authUser"));
 });
+
+$router->group(
+	array(
+		"middleware" => "jwt.auth",
+		"prefix"     => "user"
+	),
+	function () use ($router) {
+		$router->post("login", "UserController@getUserInformation");
+	}
+);

@@ -71,8 +71,9 @@ class UserController extends Controller{
     
   }
 
-  public function getUserInformation( $request ){
+  public function getUserInformation( Request $request ){
     
+    return response()->json( $request->get("auth"));
   }
   
 }
