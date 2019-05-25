@@ -48,8 +48,7 @@ class UserController extends Controller{
     $jwtdata = [
       "iss" => "lumen-jwt",
       "sub" => $id,
-      "iad" => time(),
-      "exp" => time() + 60*60
+      "iad" => time()
     ];
 
     return JWT::encode( $jwtdata, env('JWT_SECRET') );
@@ -74,6 +73,16 @@ class UserController extends Controller{
   public function getUserInformation( Request $request ){
     
     return response()->json( $request->get("auth"));
+  }
+
+  /**
+   * Verificar si actualmente el JWT es válido.
+   * En toría, verificar si está o aún continua logeado.
+   */
+  public function checkAuth(){
+    return response()->json(array(
+      "success" => "Usuario actualmente logaeado"
+    ));
   }
   
 }

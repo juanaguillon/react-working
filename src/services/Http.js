@@ -8,7 +8,7 @@ class HttpClass {
 
   dataFetch = {};
 
-  constructor( mainUrl ){
+  constructor( mainUrl = "http://localhost:80" ){
     this.mainUrl = mainUrl;
   }
 

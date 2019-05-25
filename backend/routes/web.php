@@ -29,5 +29,6 @@ $router->group(
 	),
 	function () use ($router) {
 		$router->post("login", "UserController@getUserInformation");
+		$router->get("checkloging", "UserController@checkAuth");
 	}
 );

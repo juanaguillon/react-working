@@ -1,4 +1,5 @@
 import React from "react";
+import {Redirect} from 'react-router-dom'
 import HttpClass from "../services/Http";
 
 class Login extends React.Component {
@@ -8,7 +9,8 @@ class Login extends React.Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      redirect:false
     }
 
     this.handleChangeInput = this.handleChangeInput.bind(this);
@@ -34,6 +36,7 @@ class Login extends React.Component {
     json.then( f => {
       if ( typeof f.token != "undefined" ){
         localStorage.setItem('token_id', f.token );
+        this.setState({redirect:true})
       }else{
         console.log( f );
       }
@@ -41,6 +44,9 @@ class Login extends React.Component {
   }
 
   render(){
+
+    if ( this.state.redirect ) return <Redirect to="/private" />
+    
     return (
       <div className="box">
         <form id="login_form" onSubmit={this.handleSubmit}>
